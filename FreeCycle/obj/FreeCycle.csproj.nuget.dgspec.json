@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\57301\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {}
+    "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {}
   },
   "projects": {
-    "C:\\Users\\57301\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {
+    "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\57301\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+        "projectUniqueName": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
         "projectName": "FreeCycle",
-        "projectPath": "C:\\Users\\57301\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
-        "packagesPath": "C:\\Users\\57301\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\57301\\Source\\Repos\\FreeCycle\\FreeCycle\\obj\\",
+        "projectPath": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+        "packagesPath": "C:\\Users\\programador1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\57301\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\programador1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
