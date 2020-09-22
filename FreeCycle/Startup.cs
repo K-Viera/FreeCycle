@@ -25,10 +25,11 @@ namespace FreeCycle
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddControllersWithViews();
             var connection = Configuration.GetConnectionString("DatabaseConnection");
             services.AddDbContext<DatabaseContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
