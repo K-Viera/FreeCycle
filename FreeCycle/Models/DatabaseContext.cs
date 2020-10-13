@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Threading.Tasks;
+using FreeCycle.Models;
 
 namespace FreeCycle.Models
 {
@@ -14,6 +15,10 @@ namespace FreeCycle.Models
         }
 
         public DbSet<Usuario> Usuario { get; set; }
+
+        public DbSet<FreeCycle.Models.Empresa> Empresa { get; set; }
+
+        public DbSet<FreeCycle.Models.SolicitudDonacion> SolicitudDonacion { get; set; }
        
        
     }

@@ -1394,3 +1394,5 @@ C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\FreeCycl
 C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\FreeCycle.genruntimeconfig.cache
 C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\Create.cshtml.g.cs
 C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Home\HomePage.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Empresas\Create.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Donaciones\SolicitudDonacion.cshtml.g.cs

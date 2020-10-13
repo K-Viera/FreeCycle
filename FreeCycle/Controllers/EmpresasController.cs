@@ -9,22 +9,22 @@ using FreeCycle.Models;
 
 namespace FreeCycle.Controllers
 {
-    public class UsuariosController : Controller
+    public class EmpresasController : Controller
     {
         private readonly DatabaseContext _context;
 
-        public UsuariosController(DatabaseContext context)
+        public EmpresasController(DatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: Usuarios
+        // GET: Empresas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuario.ToListAsync());
+            return View(await _context.Empresa.ToListAsync());
         }
 
-        // GET: Usuarios/Details/5
+        // GET: Empresas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,44 +32,39 @@ namespace FreeCycle.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario
+            var empresa = await _context.Empresa
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuario == null)
+            if (empresa == null)
             {
                 return NotFound();
             }
 
-            return View(usuario);
+            return View(empresa);
         }
 
-        // GET: Usuarios/Create
+        // GET: Empresas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Usuarios/Create
+        // POST: Empresas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Password,PhoneNumber,Email")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Id,CompanyName,Password,PhoneNumber,Email,NIT")] Empresa empresa)
         {
-            String temp = usuario.Email;
-            var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == temp);
-            if (Usuario == null)
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _context.Add(usuario);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("Index", "Home");
-                }
+                _context.Add(empresa);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
             }
-            return View(usuario);
+            return View(empresa);
         }
-       
-        // GET: Usuarios/Edit/5
+
+        // GET: Empresas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,22 +72,22 @@ namespace FreeCycle.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario.FindAsync(id);
-            if (usuario == null)
+            var empresa = await _context.Empresa.FindAsync(id);
+            if (empresa == null)
             {
                 return NotFound();
             }
-            return View(usuario);
+            return View(empresa);
         }
 
-        // POST: Usuarios/Edit/5
+        // POST: Empresas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Password,PhoneNumber,Email")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyName,Password,PhoneNumber,Email,NIT")] Empresa empresa)
         {
-            if (id != usuario.Id)
+            if (id != empresa.Id)
             {
                 return NotFound();
             }
@@ -101,12 +96,12 @@ namespace FreeCycle.Controllers
             {
                 try
                 {
-                    _context.Update(usuario);
+                    _context.Update(empresa);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuarioExists(usuario.Id))
+                    if (!EmpresaExists(empresa.Id))
                     {
                         return NotFound();
                     }
@@ -117,10 +112,10 @@ namespace FreeCycle.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuario);
+            return View(empresa);
         }
 
-        // GET: Usuarios/Delete/5
+        // GET: Empresas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,30 +123,30 @@ namespace FreeCycle.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario
+            var empresa = await _context.Empresa
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuario == null)
+            if (empresa == null)
             {
                 return NotFound();
             }
 
-            return View(usuario);
+            return View(empresa);
         }
 
-        // POST: Usuarios/Delete/5
+        // POST: Empresas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var usuario = await _context.Usuario.FindAsync(id);
-            _context.Usuario.Remove(usuario);
+            var empresa = await _context.Empresa.FindAsync(id);
+            _context.Empresa.Remove(empresa);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuarioExists(int id)
+        private bool EmpresaExists(int id)
         {
-            return _context.Usuario.Any(e => e.Id == id);
+            return _context.Empresa.Any(e => e.Id == id);
         }
     }
 }
