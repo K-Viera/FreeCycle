@@ -38,6 +38,23 @@ namespace FreeCycle.Controllers
                 }
                
             }
+            else
+            {
+                var Empresa = _context.Empresa.FirstOrDefault(empresa => empresa.Email == Email);
+                if (Empresa != null)
+                {
+                    if (Empresa.Password == Password)
+                    {
+                        return RedirectToAction("HomePage", "Home");
+                    }
+                    else
+                    {
+                        //Ver cómo se imprime un mensaje de CONTRASEÑA INCORRECTA
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                }
+            }
             //Ver cómo se imprime un mensaje de CUENTA INEXISTENTE
             return RedirectToAction("Index", "Home");
             
