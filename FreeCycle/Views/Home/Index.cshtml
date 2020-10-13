@@ -6,40 +6,46 @@
     <h2 class="display-4">Sign in</h2>
     <br />
 
-    <form>
+    <form asp-action="Validacion">
         <div class="form-group row">
-            <! -- No sabía cómo más centrar el botón de input -->
             <div class="col-4"></div>
             <div class="col-4 ">
-                <input type="email" class="form-control" placeholder="Email" />
+                <input name="Email" type="email" class="form-control" placeholder="Email" />
             </div>
 
         </div>
         <div class="form-group row">
             <div class="col-4"></div>
             <div class="col-4">
-                <input type="password" class="form-control" placeholder="Password" />
+                <input name="Password" type="password" class="form-control" placeholder="Password" />
             </div>
 
         </div>
 
-    </form>
 
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <a class="btn btn-info text-white btn-block">Sign In!</a>
+
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <input type="submit" class="btn btn-info text-white btn-block" value="Sign In" />
+            </div>
         </div>
-    </div>
 
-    
+    </form>
     <small class="form-text text-muted">Don't you have an account? Create one!</small>
 
     <br />
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-            <a asp-action ="Registro" class="btn btn-info text-white btn-block">Sign Up</a>
+            <a asp-controller="Usuarios" asp-action="Create" class="btn btn-info text-white btn-block">Sign up as a Person</a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <a asp-controller="Usuarios" asp-action="Create" class="btn btn-info text-white btn-block">Sign up as a Company</a>
         </div>
     </div>
 
