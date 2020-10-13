@@ -1,0 +1,71 @@
+﻿@model FreeCycle.Models.Empresa
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="text-center"><h2 class="display-4">Sign Up</h2></div>
+
+
+<hr />
+
+<form asp-action="Create">
+    <div class="form-group row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="CompanyName" class="form-control" placeholder="Company Name" />
+            <span asp-validation-for="CompanyName" class="text-danger"></span>
+        </div>
+
+
+    </div>
+    <div class="form-group row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input type="password" asp-for="Password" class="form-control" placeholder="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input asp-for="NIT" class="form-control" placeholder="NIT" />
+            <span asp-validation-for="NIT" class="text-danger"></span>
+
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input type="email" asp-for="Email" class="form-control" placeholder="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <input type="submit" value="Sign Up!" class="btn btn-info btn-block" />
+        </div>
+
+    </div>
+</form>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
