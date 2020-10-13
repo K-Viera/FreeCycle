@@ -8975,19 +8975,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\programador1\\.nuget\\packages\\": {}
+    "C:\\Users\\Simon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+      "projectUniqueName": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
       "projectName": "FreeCycle",
-      "projectPath": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
-      "packagesPath": "C:\\Users\\programador1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\obj\\",
+      "projectPath": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+      "packagesPath": "C:\\Users\\Simon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\programador1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9056,7 +9056,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

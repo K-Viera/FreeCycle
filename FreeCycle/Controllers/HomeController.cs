@@ -12,13 +12,44 @@ namespace FreeCycle.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly DatabaseContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(DatabaseContext context, ILogger<HomeController> logger)
         {
+            _context = context;
             _logger = logger;
         }
+        
+
+        [HttpPost]
+        public async Task<IActionResult> Validacion(String Email, String Password)
+        {
+            var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == Email);
+            if(Usuario != null)
+            {
+                if (Usuario.Password == Password)
+                {
+                    return RedirectToAction("HomePage", "Home");
+                }
+                else
+                {
+                    //Ver cómo se imprime un mensaje de CONTRASEÑA INCORRECTA
+                    return RedirectToAction("Index","Home");
+                }
+               
+            }
+            //Ver cómo se imprime un mensaje de CUENTA INEXISTENTE
+            return RedirectToAction("Index", "Home");
+            
+        }
+
+      
 
         public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult HomePage()
         {
             return View();
         }

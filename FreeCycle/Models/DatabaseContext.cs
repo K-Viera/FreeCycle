@@ -14,5 +14,7 @@ namespace FreeCycle.Models
         }
 
         public DbSet<Usuario> Usuario { get; set; }
+       
+       
     }
 }
