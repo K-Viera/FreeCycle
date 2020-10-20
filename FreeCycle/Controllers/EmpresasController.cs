@@ -59,7 +59,7 @@ namespace FreeCycle.Controllers
             {
                 _context.Add(empresa);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GoToIndex", "Home");
             }
             return View(empresa);
         }

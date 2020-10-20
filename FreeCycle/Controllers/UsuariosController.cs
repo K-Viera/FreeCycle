@@ -55,6 +55,7 @@ namespace FreeCycle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Password,PhoneNumber,Email")] Usuario usuario)
         {
+            int flag;
             String temp = usuario.Email;
             var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == temp);
             if (Usuario == null)
@@ -63,11 +64,16 @@ namespace FreeCycle.Controllers
                 {
                     _context.Add(usuario);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GoToIndex", "Home");
                 }
+                
             }
+            flag = 0;
+            ViewBag.flag = flag;
+           
             return View(usuario);
         }
+
        
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)

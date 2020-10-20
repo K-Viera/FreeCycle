@@ -18,7 +18,7 @@ namespace FreeCycle.Models
 
         public DbSet<FreeCycle.Models.Empresa> Empresa { get; set; }
 
-        public DbSet<FreeCycle.Models.SolicitudDonacion> SolicitudDonacion { get; set; }
+        
        
        
     }
