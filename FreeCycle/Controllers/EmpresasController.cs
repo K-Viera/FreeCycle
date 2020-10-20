@@ -55,12 +55,20 @@ namespace FreeCycle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CompanyName,Password,PhoneNumber,Email,NIT")] Empresa empresa)
         {
-            if (ModelState.IsValid)
+            int flag;
+            String temp = empresa.Email;
+            var Empresa = _context.Empresa.FirstOrDefault(empresa => empresa.Email == temp);
+            if(Empresa == null)
             {
-                _context.Add(empresa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("GoToIndex", "Home");
+                if (ModelState.IsValid)
+                {
+                    _context.Add(empresa);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("GoToIndex", "Home");
+                }
             }
+            flag = 0;
+            ViewBag.flag = flag;
             return View(empresa);
         }
 

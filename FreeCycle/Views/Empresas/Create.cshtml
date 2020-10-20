@@ -3,6 +3,15 @@
 @{
     ViewData["Title"] = "Create";
 }
+
+@if (ViewBag.flag == 0)
+{
+    <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Email already registered</strong>
+    </div>
+}
+
 <div class="text-center"><h2 class="display-4">Sign Up</h2></div>
 
 
@@ -68,3 +77,17 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script type="text/javascript">
+    setTimeout(function () {
+        // Closing the alert
+        $(".alert-success").fadeTo(1500, 500).slideUp(500, function () {
+            $(".alert-success").slideUp(500);
+        });
+        $(".alert-warning").fadeTo(1500, 500).slideUp(500, function () {
+            $(".alert-warning").slideUp(500);
+        });
+        $(".alert-danger").fadeTo(1500, 500).slideUp(500, function () {
+            $(".alert-danger").slideUp(500);
+        });
+    }, 600);
+</script>
