@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FreeCycle.Models.SolicitudDonacion>
+
+@{
+    ViewData["Title"] = "Donation List";
+}
+
+<h1>Donation requests</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Address
+            </th>
+            <th>
+                Object description
+            </th>
+            <th>
+                User's email
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.objeto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Email)
+                </td>
+                <td>
+                    <!-- Preguntarle a Kevin cómo mandar el Item.id hace que se sepa qué item es en la vista de Detalles-->
+                    <a asp-action="DetallesDeSolicitudesDeDonaciones" asp-route-id="@item.Id">Request details</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
