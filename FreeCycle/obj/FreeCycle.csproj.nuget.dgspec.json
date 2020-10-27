@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {}
+    "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {
+    "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+        "projectUniqueName": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
         "projectName": "FreeCycle",
-        "projectPath": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
-        "packagesPath": "C:\\Users\\Simon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\obj\\",
+        "projectPath": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+        "packagesPath": "C:\\Users\\programador1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\programador1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,17 +44,17 @@
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[3.1.9, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[3.1.9, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.8, )"
+              "version": "[3.1.9, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

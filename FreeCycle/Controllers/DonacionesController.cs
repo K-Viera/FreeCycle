@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FreeCycle.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +10,36 @@ namespace FreeCycle.Controllers
 {
     public class DonacionesController : Controller
     {
+        private readonly DatabaseContext _context;
+
+        public DonacionesController(DatabaseContext context)
+        {
+            _context = context;
+        }
         // GET: DonacionesController
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult SolicitudDonacion()
+        public ActionResult SolicitudDonacion(int UsuarioId)
         {
             return View();
         }
-
-        // GET: DonacionesController/Details/5
-        public ActionResult Details(int id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CrearSolicitud([Bind("UsuarioId,adress,objeto")]SolicitudDonacion solicitud)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(solicitud);
+                await _context.SaveChangesAsync();
+                //hacer aviso de registro de solicitud exitoso
+                return RedirectToAction("HomePage", "Home", new { flag = 3, UsuarioId=solicitud.UsuarioId });
+            }
+            return View("SolicitudDonacion", solicitud);
+        }
+            // GET: DonacionesController/Details/5
+            public ActionResult Details(int id)
         {
             return View();
         }

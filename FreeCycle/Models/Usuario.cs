@@ -26,7 +26,8 @@ namespace FreeCycle.Models
         [Required]
         public String Email { get; set; }
 
-
+        [InverseProperty("Usuario")]
+        public virtual ICollection<SolicitudDonacion> solicitudesDonaciones { get; set; }
 
 
     }

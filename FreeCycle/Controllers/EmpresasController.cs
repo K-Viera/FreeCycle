@@ -22,6 +22,7 @@ namespace FreeCycle.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Empresa.ToListAsync());
+           
         }
 
         // GET: Empresas/Details/5
@@ -55,12 +56,20 @@ namespace FreeCycle.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CompanyName,Password,PhoneNumber,Email,NIT")] Empresa empresa)
         {
-            if (ModelState.IsValid)
+            int flag;
+            String temp = empresa.Email;
+            var Empresa = _context.Empresa.FirstOrDefault(empresa => empresa.Email == temp);
+            if(Empresa == null)
             {
-                _context.Add(empresa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                if (ModelState.IsValid)
+                {
+                    _context.Add(empresa);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("GoToIndex", "Home");
+                }
             }
+            flag = 0;
+            ViewBag.flag = flag;
             return View(empresa);
         }
 

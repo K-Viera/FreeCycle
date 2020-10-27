@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FreeCycle.Models;
+using FreeCycle.ViewModels;
 
 namespace FreeCycle.Controllers
 {
@@ -19,55 +20,58 @@ namespace FreeCycle.Controllers
             _context = context;
             _logger = logger;
         }
-        
+
 
         [HttpPost]
-        public async Task<IActionResult> Validacion(String Email, String Password)
+        public async Task<IActionResult> Validacion([Bind("Email,Password")] Validacion validacion)
         {
-            var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == Email);
-            if(Usuario != null)
-            {
-                if (Usuario.Password == Password)
+                int flag = 0;
+                var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == validacion.Email);
+                if (Usuario != null)
                 {
-                    return RedirectToAction("HomePage", "Home");
+                    if (Usuario.Password == validacion.Password)
+                    {
+                        
+                        return RedirectToAction("HomePage", new { flag = 1,UsuarioId=Usuario.Id});
+                    }
+                    flag = 1;
+                 
+
                 }
                 else
                 {
-                    //Ver cómo se imprime un mensaje de CONTRASEÑA INCORRECTA
-                    return RedirectToAction("Index","Home");
-                }
-               
-            }
-            else
-            {
-                var Empresa = _context.Empresa.FirstOrDefault(empresa => empresa.Email == Email);
-                if (Empresa != null)
-                {
-                    if (Empresa.Password == Password)
+                    var Empresa = _context.Empresa.FirstOrDefault(empresa => empresa.Email == validacion.Email);
+                    if (Empresa != null)
                     {
-                        return RedirectToAction("HomePage", "Home");
+                        if (Empresa.Password == validacion.Password)
+                        {
+                            return RedirectToAction("HomePage", new { flag = 1 });
+                        }
+                        flag = 1;
                     }
-                    else
-                    {
-                        //Ver cómo se imprime un mensaje de CONTRASEÑA INCORRECTA
-                        return RedirectToAction("Index", "Home");
-                    }
-
+                    
                 }
-            }
-            //Ver cómo se imprime un mensaje de CUENTA INEXISTENTE
-            return RedirectToAction("Index", "Home");
-            
+                ViewBag.flag = flag;
+                //Ver cómo se imprime un mensaje de CUENTA INEXISTENTE
+                return View("Index", validacion);
         }
 
-      
+        public IActionResult GoToIndex()
+        {
+            int flag = 3;
+            ViewBag.flag = flag;
+            return View("Index");
+        }
 
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult HomePage()
+       
+        public IActionResult HomePage(int flag,int UsuarioId)
         {
+            ViewBag.flag = flag;
+            ViewBag.UsuarioId = UsuarioId;
             return View();
         }
 

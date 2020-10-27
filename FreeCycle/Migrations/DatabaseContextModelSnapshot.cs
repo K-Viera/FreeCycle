@@ -47,6 +47,30 @@ namespace FreeCycle.Migrations
                     b.ToTable("Empresa");
                 });
 
+            modelBuilder.Entity("FreeCycle.Models.SolicitudDonacion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("adress")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("objeto")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("SolicitudDonacion");
+                });
+
             modelBuilder.Entity("FreeCycle.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -72,6 +96,15 @@ namespace FreeCycle.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("FreeCycle.Models.SolicitudDonacion", b =>
+                {
+                    b.HasOne("FreeCycle.Models.Usuario", "Usuario")
+                        .WithMany("solicitudesDonaciones")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
