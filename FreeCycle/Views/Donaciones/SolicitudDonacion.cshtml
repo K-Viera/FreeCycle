@@ -1,28 +1,29 @@
-﻿@{
+﻿@model SolicitudDonacion
+@{
     ViewData["Title"] = "Donation Request";
 }
+
 
 <div class="text-center">
     <h2 class="display-4">Ask for a donation</h2>
     <br />
 
-    <form>
+    <form asp-action="CrearSolicitud">
+        <input hidden asp-for="UsuarioId" />
         <div class="form-group row">
             <div class="col-4"></div>
             <div class="col-4 ">
-                <input  class="form-control" placeholder="Address" />
+                <input  asp-for="adress" class="form-control" placeholder="Address" />
             </div>
 
         </div>
         <div class="form-group row">
             <div class="col-4"></div>
             <div class="col-4">
-            <textarea type="text" rows="3" class="form-control" placeholder="Object description"></textarea>
+            <textarea asp-for="objeto" type="text" rows="3" class="form-control" placeholder="Object description"></textarea>
             </div>
 
         </div>
-
-
 
         <div class="row">
             <div class="col-4"></div>

@@ -9,23 +9,23 @@ using FreeCycle.Models;
 
 namespace FreeCycle.Controllers
 {
-    public class EmpresasController : Controller
+    public class SolicitudDonacionsController : Controller
     {
         private readonly DatabaseContext _context;
 
-        public EmpresasController(DatabaseContext context)
+        public SolicitudDonacionsController(DatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: Empresas
+        // GET: SolicitudDonacions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Empresa.ToListAsync());
-           
+            var databaseContext = _context.solicitudDonacion.Include(s => s.Usuario);
+            return View(await databaseContext.ToListAsync());
         }
 
-        // GET: Empresas/Details/5
+        // GET: SolicitudDonacions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,47 +33,42 @@ namespace FreeCycle.Controllers
                 return NotFound();
             }
 
-            var empresa = await _context.Empresa
+            var solicitudDonacion = await _context.solicitudDonacion
+                .Include(s => s.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (empresa == null)
+            if (solicitudDonacion == null)
             {
                 return NotFound();
             }
 
-            return View(empresa);
+            return View(solicitudDonacion);
         }
 
-        // GET: Empresas/Create
+        // GET: SolicitudDonacions/Create
         public IActionResult Create()
         {
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Email");
             return View();
         }
 
-        // POST: Empresas/Create
+        // POST: SolicitudDonacions/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CompanyName,Password,PhoneNumber,Email,NIT")] Empresa empresa)
+        public async Task<IActionResult> Create([Bind("Id,adress,objeto,UsuarioId")] SolicitudDonacion solicitudDonacion)
         {
-            int flag;
-            String temp = empresa.Email;
-            var Empresa = _context.Empresa.FirstOrDefault(empresa => empresa.Email == temp);
-            if(Empresa == null)
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _context.Add(empresa);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("GoToIndex", "Home");
-                }
+                _context.Add(solicitudDonacion);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            flag = 0;
-            ViewBag.flag = flag;
-            return View(empresa);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Email", solicitudDonacion.UsuarioId);
+            return View(solicitudDonacion);
         }
 
-        // GET: Empresas/Edit/5
+        // GET: SolicitudDonacions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,22 +76,23 @@ namespace FreeCycle.Controllers
                 return NotFound();
             }
 
-            var empresa = await _context.Empresa.FindAsync(id);
-            if (empresa == null)
+            var solicitudDonacion = await _context.solicitudDonacion.FindAsync(id);
+            if (solicitudDonacion == null)
             {
                 return NotFound();
             }
-            return View(empresa);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Email", solicitudDonacion.UsuarioId);
+            return View(solicitudDonacion);
         }
 
-        // POST: Empresas/Edit/5
+        // POST: SolicitudDonacions/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyName,Password,PhoneNumber,Email,NIT")] Empresa empresa)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,adress,objeto,UsuarioId")] SolicitudDonacion solicitudDonacion)
         {
-            if (id != empresa.Id)
+            if (id != solicitudDonacion.Id)
             {
                 return NotFound();
             }
@@ -105,12 +101,12 @@ namespace FreeCycle.Controllers
             {
                 try
                 {
-                    _context.Update(empresa);
+                    _context.Update(solicitudDonacion);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmpresaExists(empresa.Id))
+                    if (!SolicitudDonacionExists(solicitudDonacion.Id))
                     {
                         return NotFound();
                     }
@@ -121,10 +117,11 @@ namespace FreeCycle.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(empresa);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Email", solicitudDonacion.UsuarioId);
+            return View(solicitudDonacion);
         }
 
-        // GET: Empresas/Delete/5
+        // GET: SolicitudDonacions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,30 +129,31 @@ namespace FreeCycle.Controllers
                 return NotFound();
             }
 
-            var empresa = await _context.Empresa
+            var solicitudDonacion = await _context.solicitudDonacion
+                .Include(s => s.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (empresa == null)
+            if (solicitudDonacion == null)
             {
                 return NotFound();
             }
 
-            return View(empresa);
+            return View(solicitudDonacion);
         }
 
-        // POST: Empresas/Delete/5
+        // POST: SolicitudDonacions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var empresa = await _context.Empresa.FindAsync(id);
-            _context.Empresa.Remove(empresa);
+            var solicitudDonacion = await _context.solicitudDonacion.FindAsync(id);
+            _context.solicitudDonacion.Remove(solicitudDonacion);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmpresaExists(int id)
+        private bool SolicitudDonacionExists(int id)
         {
-            return _context.Empresa.Any(e => e.Id == id);
+            return _context.solicitudDonacion.Any(e => e.Id == id);
         }
     }
 }

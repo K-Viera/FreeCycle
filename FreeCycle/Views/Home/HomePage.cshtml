@@ -23,9 +23,11 @@
 <div class="row">
     <div class="col-3"></div>
 
-    <div class="col-3"> <a asp-controller="Donaciones" asp-action="SolicitudDonacion" class="btn btn-info text-white btn-lg btn-block">Ask for a Donation</a></div>
     <div class="col-3">
-        <a class="btn btn-info text-white btn-block btn-lg">Make a Donation</a>
+        <a asp-controller="Donaciones" asp-action="SolicitudDonacion" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-lg btn-block">Ask for a Donation</a>
+    </div>
+    <div class="col-3">
+        <a asp-controller="SolicitudDonacions" asp-action="index"class="btn btn-info text-white btn-block btn-lg">Make a Donation</a>
     </div>
     <div class="col-3"></div>
 </div>

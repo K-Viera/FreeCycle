@@ -31,7 +31,8 @@ namespace FreeCycle.Controllers
                 {
                     if (Usuario.Password == validacion.Password)
                     {
-                        return RedirectToAction("GoToHomePage", "Home");
+                        
+                        return RedirectToAction("HomePage", new { flag = 1,UsuarioId=Usuario.Id});
                     }
                     flag = 1;
                  
@@ -44,22 +45,15 @@ namespace FreeCycle.Controllers
                     {
                         if (Empresa.Password == validacion.Password)
                         {
-                            return RedirectToAction("GoToHomePage", "Home");
+                            return RedirectToAction("HomePage", new { flag = 1 });
                         }
                         flag = 1;
-                     
                     }
                     
                 }
                 ViewBag.flag = flag;
                 //Ver cómo se imprime un mensaje de CUENTA INEXISTENTE
                 return View("Index", validacion);
-        }
-        public IActionResult GoToHomePage()
-        {
-            int flag = 1;
-            ViewBag.flag = flag;
-            return View("HomePage");
         }
 
         public IActionResult GoToIndex()
@@ -74,8 +68,10 @@ namespace FreeCycle.Controllers
             return View();
         }
        
-        public IActionResult HomePage()
+        public IActionResult HomePage(int flag,int UsuarioId)
         {
+            ViewBag.flag = flag;
+            ViewBag.UsuarioId = UsuarioId;
             return View();
         }
 
