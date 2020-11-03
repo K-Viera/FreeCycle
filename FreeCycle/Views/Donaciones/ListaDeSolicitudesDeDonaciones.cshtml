@@ -36,11 +36,17 @@
                 </td>
                 <td>
                     <!-- Preguntarle a Kevin cómo mandar el Item.id hace que se sepa qué item es en la vista de Detalles-->
-                    <a asp-action="DetallesDeSolicitudesDeDonaciones" asp-route-id="@item.Id">Request details</a>
+                    <a asp-action="DetallesDeSolicitudesDeDonaciones" asp-route-id="@item.Id"  asp-route-UsuarioId="@ViewBag.UsuarioId">Request details</a>
 
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="row">
+    <div class="col-2"> <a asp-controller="Home" asp-action="HomePage" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-block">Back to home</a></div>
+
+
+</div>
 

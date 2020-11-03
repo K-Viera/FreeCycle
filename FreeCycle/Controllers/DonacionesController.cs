@@ -18,8 +18,10 @@ namespace FreeCycle.Controllers
             _context = context;
         }
         
+        //Esto le envía el parámetro a la vista directamente???
         public ActionResult SolicitudDonacion(int UsuarioId)
         {
+            ViewBag.UsuarioId = UsuarioId;
             return View();
         }
         
@@ -39,20 +41,21 @@ namespace FreeCycle.Controllers
             return View("SolicitudDonacion", solicitud);
         }
 
-        public async Task<IActionResult> ListaDeSolicitudesDeDonaciones()
+        public async Task<IActionResult> ListaDeSolicitudesDeDonaciones(int UsuarioId)
         {
+            ViewBag.UsuarioId = UsuarioId;
             var databaseContext = _context.solicitudDonacion.Include(s => s.Usuario);
             return View(await databaseContext.ToListAsync());
         }
 
 
-        public async Task<IActionResult> DetallesDeSolicitudesDeDonaciones(int? id)
+        public async Task<IActionResult> DetallesDeSolicitudesDeDonaciones(int? id, int UsuarioId)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            ViewBag.UsuarioId = UsuarioId;
             var solicitudDonacion = await _context.solicitudDonacion
                 .Include(s => s.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);

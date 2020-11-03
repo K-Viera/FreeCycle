@@ -31,7 +31,7 @@
     </dl>
 </div>
 <div class="row">
-    <div class="col-2"> <a  class="btn btn-info text-white btn-block">Donate!  </a></div>
+    <div class="col-2"> <a  class="btn btn-info text-white btn-block">Donate!</a></div>
 
 
 </div>
@@ -50,7 +50,6 @@
 <br />
 <div class="row">
     <div class="col-2">
-        <a asp-action="ListaDeSolicitudesDeDonaciones" class="btn btn-info text-white btn-block">Back to list</a>
-      
-    </div>          
+        <a asp-action="ListaDeSolicitudesDeDonaciones" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-block">Back to list</a>
+     </div>          
 </div>

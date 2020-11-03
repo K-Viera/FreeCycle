@@ -1855,3 +1855,4 @@ C:\Users\programador1\Desktop\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\
 C:\Users\programador1\Desktop\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\SolicitudDonacions\Index.cshtml.g.cs
 C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Donaciones\DetallesDeSolicitudesDeDonaciones.cshtml.g.cs
 C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Donaciones\ListaDeSolicitudesDeDonaciones.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\RecuperarContraseña.cshtml.g.cs
