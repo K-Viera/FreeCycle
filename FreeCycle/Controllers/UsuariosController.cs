@@ -21,7 +21,7 @@ namespace FreeCycle.Controllers
         {
             return View();
         }
-       
+
         public UsuariosController(DatabaseContext context)
         {
             _context = context;
@@ -43,7 +43,7 @@ namespace FreeCycle.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction("GoToIndex", "Home", new { flag = 3 });
                 }
-                
+
             }
             flag = 0;
             ViewBag.flag = flag;
@@ -58,13 +58,13 @@ namespace FreeCycle.Controllers
         public ActionResult RecuperarContraseña(string Email)
         {
             var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == Email);
-            if(Usuario  != null)
+            if (Usuario != null)
             {
                 string strToken = Usuario.Email.ToString();
                 //ACÁ SE DEBERÍA ENCRIPTAR EL EMAIL
                 string strTokenAjax;
                 //Acá se debería adquirir la dirección de una mejor forma
-                var address = "https://localhost:44358/Usuarios/CambiarContraseña/?tkn="+ strToken;
+                var address = "https://localhost:44358/Usuarios/CambiarContraseña/?tkn=" + strToken;
 
                 string to = Email;
                 string subject = "PASSWORD RECOVERY URGENT";
@@ -91,7 +91,7 @@ namespace FreeCycle.Controllers
 
                 //No es necesario se puede manejar con una flag tipica
                 ViewBag.Email = Email;
-                
+
             }
             else
             {
@@ -100,9 +100,42 @@ namespace FreeCycle.Controllers
             return View();
         }
 
+        public IActionResult CambiarContraseña(string tkn, int flag)
+        {
+            if (!string.IsNullOrEmpty(tkn))
+            {
+                ViewBag.tkn = tkn;
+                ViewBag.flag = flag;
+            }
+            return View();
+        }
 
-      
 
+        [HttpPost]
+        public async Task<IActionResult> CambiarContraseña(string Password, string Password2, string tkn)
+        {
+            int flag;
+            if (Password == Password2)
+            {
 
+                var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == tkn);
+
+                if (Usuario != null)
+                {
+                    Usuario.Password = Password;
+                    _context.Update(Usuario);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("GoToIndex", "Home", new { flag = 4 });
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("CambiarContraseña", "Usuarios", new { tkn = tkn, flag = 5 });
+            }
+
+            return View();
+
+        }
     }
 }

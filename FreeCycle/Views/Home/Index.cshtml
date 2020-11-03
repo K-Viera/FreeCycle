@@ -25,6 +25,14 @@
         <strong>Succesfully registered</strong>
     </div>
 }
+@if (ViewBag.flag == 4)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Successful password change</strong>
+    </div>
+}
+
 <div class="text-center">
     <h2 class="display-4">Sign in</h2>
     <hr />
