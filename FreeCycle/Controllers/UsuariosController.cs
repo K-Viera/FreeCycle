@@ -67,10 +67,10 @@ namespace FreeCycle.Controllers
                 var address = "https://localhost:44358/Usuarios/CambiarContraseña/?tkn=" + strToken;
 
                 string to = Email;
-                string subject = "PASSWORD RECOVERY URGENT";
+                string subject = "PASSWORD RECOVERY";
 
                 //Mejorar este mensaje y ponerlo con HTML
-                string body = "Jelou jaguar yu, pa recuperar la contra pai vaya para " + address + " Un saludo";
+                string body = "Hello, in the following link you will be able to change your password to recover your account: " + address ;
 
                 MailMessage mm = new MailMessage();
                 mm.To.Add(to);
