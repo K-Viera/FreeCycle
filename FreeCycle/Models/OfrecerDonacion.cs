@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FreeCycle.Models
 {
-    public class SolicitudDonacion
+    public class OfrecerDonacion
     {
         [Key]
         public int Id { get; set; }
@@ -16,8 +16,11 @@ namespace FreeCycle.Models
         public String adress { get; set; }
 
         [Required]
+        public String estado { get; set; }
+
+        [Required]
         public String objeto { get; set; }
-        
+
         [ForeignKey("Usuario")]
         public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }

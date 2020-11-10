@@ -9,8 +9,7 @@ using FreeCycle.Models;
 using System.Net.Mail;
 using System.Security.Cryptography.Xml;
 using System.Text;
-
-
+using FreeCycle.ViewModels;
 
 namespace FreeCycle.Controllers
 {
@@ -57,20 +56,22 @@ namespace FreeCycle.Controllers
         [HttpPost]
         public ActionResult RecuperarContraseña(string Email)
         {
+            Encriptacion e = new Encriptacion();
             var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == Email);
             if (Usuario != null)
             {
                 string strToken = Usuario.Email.ToString();
                 //ACÁ SE DEBERÍA ENCRIPTAR EL EMAIL
-                string strTokenAjax;
+                string claveCompartida = "limoncitoconron";
+                string strEncrypted = e.EncryptStringAES(strToken, claveCompartida);
                 //Acá se debería adquirir la dirección de una mejor forma
-                var address = "https://localhost:44358/Usuarios/CambiarContraseña/?tkn=" + strToken;
+                var address = "https://localhost:44358/Usuarios/CambiarContraseña/?tkn=" + strEncrypted;
 
                 string to = Email;
                 string subject = "PASSWORD RECOVERY";
 
                 //Mejorar este mensaje y ponerlo con HTML
-                string body = "Hello, in the following link you will be able to change your password to recover your account: " + address ;
+                string body = "Hello, in the following link you will be able to change your password to recover your account: " + address;
 
                 MailMessage mm = new MailMessage();
                 mm.To.Add(to);
@@ -114,11 +115,13 @@ namespace FreeCycle.Controllers
         [HttpPost]
         public async Task<IActionResult> CambiarContraseña(string Password, string Password2, string tkn)
         {
-            int flag;
+            Encriptacion e = new Encriptacion();
+
             if (Password == Password2)
             {
-
-                var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == tkn);
+                string claveCompartida = "limoncitoconron";
+                String tknDencrypted = e.DecryptStringAES(tkn, claveCompartida);
+                var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == tknDencrypted);
 
                 if (Usuario != null)
                 {

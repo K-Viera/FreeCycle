@@ -29,6 +29,8 @@ namespace FreeCycle.Models
         [InverseProperty("Usuario")]
         public virtual ICollection<SolicitudDonacion> solicitudesDonaciones { get; set; }
 
+        [InverseProperty("Usuario")]
+        public virtual ICollection<OfrecerDonacion> ofrecimientosDonaciones { get; set; }
 
     }
 }

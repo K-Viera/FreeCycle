@@ -17,7 +17,28 @@ namespace FreeCycle.Controllers
         {
             _context = context;
         }
-        
+
+        public ActionResult OfrecerDonacion(int UsuarioId)
+        {
+            ViewBag.UsuarioId = UsuarioId;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CrearOfrecimiento([Bind("UsuarioId,adress,estado,objeto")] OfrecerDonacion ofrecimiento)
+        {
+            int flag = 0;
+            if (ModelState.IsValid)
+            {
+                _context.Add(ofrecimiento);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("HomePage", "Home", new { flag = 4, UsuarioId = ofrecimiento.UsuarioId });
+            }
+
+            return View("OfrecerDonacion", ofrecimiento);
+        }
+
         //Esto le envía el parámetro a la vista directamente???
         public ActionResult SolicitudDonacion(int UsuarioId)
         {
