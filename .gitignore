@@ -342,3 +342,9 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
+*.config
+*.config
+*.dll
+*.pdb
+FreeCycle/bin/Debug/netcoreapp3.1/FreeCycle.runtimeconfig.dev.json
+bin
