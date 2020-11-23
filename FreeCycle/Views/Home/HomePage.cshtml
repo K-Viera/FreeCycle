@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if (ViewBag.flag == 1)
+@if (ViewBag.flag == 2)
 {
     <div class="alert alert-success" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -11,8 +11,28 @@
         </strong>
     </div>
 }
-<div class="text-center"><h1 class="display-4">Free Cycle</h1></div>
-<img src="C:\Users\Simon\source\repos\FreeCycle\FreeCycle\Imagenes\FreeCycle.png" />
+@if (ViewBag.flag == 3)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>
+            Donation request successfully registered
+        </strong>
+    </div>
+}
+@if (ViewBag.flag == 4)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>
+            Donation offer successfully registered
+        </strong>
+    </div>
+}
+<div class="text-center"><img src="/Imagenes/FreeCycle.png" class="rounded-circle" height="162" width="377" /></div>
+
+
+
 
 <br />
 <br />
@@ -21,16 +41,20 @@
 
 
 <div class="row">
-    <div class="col-3"></div>
 
-    <div class="col-3">
+    <div class="col-4">
         <a asp-controller="Donaciones" asp-action="SolicitudDonacion" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-lg btn-block">Ask for a Donation</a>
     </div>
-    <div class="col-3">
-        <a asp-controller="SolicitudDonacions" asp-action="index"class="btn btn-info text-white btn-block btn-lg">Make a Donation</a>
+    <div class="col-4">
+        <a asp-controller="Donaciones" asp-action="ListaDeSolicitudesDeDonaciones" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-block btn-lg">Make a Donation</a>
     </div>
-    <div class="col-3"></div>
+    <div class="col-4">
+        <a asp-controller="Donaciones" asp-action="OfrecerDonacion" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-lg btn-block">Offer a Donation</a>
+    </div>
+
 </div>
+
+
 <script type="text/javascript">
     setTimeout(function () {
         // Closing the alert

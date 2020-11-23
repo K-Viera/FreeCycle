@@ -21,7 +21,10 @@ namespace FreeCycle.Controllers
             _logger = logger;
         }
 
-
+        //Flag 0 para correo incorrecto 
+        //Flag 1 para contraseña incorrecta
+        //Flag 2 para inicio de sesión exitoso
+        
         [HttpPost]
         public async Task<IActionResult> Validacion([Bind("Email,Password")] Validacion validacion)
         {
@@ -32,7 +35,7 @@ namespace FreeCycle.Controllers
                     if (Usuario.Password == validacion.Password)
                     {
                         
-                        return RedirectToAction("HomePage", new { flag = 1,UsuarioId=Usuario.Id});
+                        return RedirectToAction("HomePage", new { flag = 2,UsuarioId=Usuario.Id});
                     }
                     flag = 1;
                  
@@ -45,20 +48,21 @@ namespace FreeCycle.Controllers
                     {
                         if (Empresa.Password == validacion.Password)
                         {
-                            return RedirectToAction("HomePage", new { flag = 1 });
+                            return RedirectToAction("HomePage", new { flag = 2 });
                         }
                         flag = 1;
                     }
                     
                 }
                 ViewBag.flag = flag;
-                //Ver cómo se imprime un mensaje de CUENTA INEXISTENTE
+                
                 return View("Index", validacion);
         }
 
-        public IActionResult GoToIndex()
+        //Le llega la flag para mostrar el mensaje de registro exitoso
+        //Este sería el flag 3
+        public IActionResult GoToIndex(int flag)
         {
-            int flag = 3;
             ViewBag.flag = flag;
             return View("Index");
         }
@@ -68,7 +72,7 @@ namespace FreeCycle.Controllers
             return View();
         }
        
-        public IActionResult HomePage(int flag,int UsuarioId)
+        public IActionResult HomePage(int flag , int UsuarioId)
         {
             ViewBag.flag = flag;
             ViewBag.UsuarioId = UsuarioId;
@@ -80,10 +84,5 @@ namespace FreeCycle.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

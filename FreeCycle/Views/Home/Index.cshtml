@@ -3,13 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if (ViewBag.flag == 1)
-{
-    <div class="alert alert-warning alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Wrong password</strong>
-    </div>
-}
+
 @if (ViewBag.flag == 0)
 {
     <div class="alert alert-warning alert-dismissable">
@@ -17,13 +11,28 @@
         <strong>Wrong Email</strong>
     </div>
 }
+@if (ViewBag.flag == 1)
+{
+    <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Wrong password</strong>
+    </div>
+}
 @if (ViewBag.flag == 3)
 {
-<div class="alert alert-success" role="alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Succesfully registered</strong>
-</div>
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Succesfully registered</strong>
+    </div>
 }
+@if (ViewBag.flag == 4)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Successful password change</strong>
+    </div>
+}
+
 <div class="text-center">
     <h2 class="display-4">Sign in</h2>
     <hr />
@@ -61,7 +70,10 @@
         </div>
 
     </form>
-    <small class="form-text text-muted">Don't you have an account? Create one!</small>
+
+
+
+    <a href="Usuarios/RecuperarContraseña" class="form-text text-muted">Forgot your password?</a>
 
     <br />
     <div class="row">
@@ -75,8 +87,10 @@
         <div class="col-4"></div>
         <div class="col-4">
             <a asp-controller="Empresas" asp-action="Create" class="btn btn-info text-white btn-block">Sign up as a Company</a>
+
         </div>
     </div>
+
 
 
 </div>

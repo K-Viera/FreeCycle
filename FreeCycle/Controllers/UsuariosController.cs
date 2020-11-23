@@ -6,51 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FreeCycle.Models;
+using System.Net.Mail;
+using System.Security.Cryptography.Xml;
+using System.Text;
+using FreeCycle.ViewModels;
 
 namespace FreeCycle.Controllers
 {
     public class UsuariosController : Controller
     {
         private readonly DatabaseContext _context;
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         public UsuariosController(DatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: Usuarios
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Usuario.ToListAsync());
-        }
-
-        // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
-        }
-
-        // GET: Usuarios/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Flag 0 para email ya registrado
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Password,PhoneNumber,Email")] Usuario usuario)
@@ -64,100 +40,105 @@ namespace FreeCycle.Controllers
                 {
                     _context.Add(usuario);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("GoToIndex", "Home");
+                    return RedirectToAction("GoToIndex", "Home", new { flag = 3 });
                 }
-                
+
             }
             flag = 0;
             ViewBag.flag = flag;
-           
             return View(usuario);
         }
 
-       
-        // GET: Usuarios/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult RecuperarContraseña()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuario.FindAsync(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-            return View(usuario);
+            return View();
         }
-
-        // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Password,PhoneNumber,Email")] Usuario usuario)
+        public ActionResult RecuperarContraseña(string Email)
         {
-            if (id != usuario.Id)
+            Encriptacion e = new Encriptacion();
+            var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == Email);
+            if (Usuario != null)
             {
-                return NotFound();
-            }
+                string strToken = Usuario.Email.ToString();
+                //ACÁ SE DEBERÍA ENCRIPTAR EL EMAIL
+                string claveCompartida = "limoncitoconron";
+                string strEncrypted = e.EncryptStringAES(strToken, claveCompartida);
+                //Acá se debería adquirir la dirección de una mejor forma
+                var address = "https://localhost:44358/Usuarios/CambiarContraseña/?tkn=" + strEncrypted;
 
-            if (ModelState.IsValid)
+                string to = Email;
+                string subject = "PASSWORD RECOVERY";
+
+                //Mejorar este mensaje y ponerlo con HTML
+                string body = "Hello, in the following link you will be able to change your password to recover your account: " + address;
+
+                MailMessage mm = new MailMessage();
+                mm.To.Add(to);
+                mm.Subject = subject;
+                mm.Body = body;
+                mm.From = new MailAddress("freecycledonations@gmail.com");
+                //Acá iría true cuando esté hecho con HTML
+                mm.IsBodyHtml = false;
+
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.Port = 587;
+                //maybe true
+                smtp.UseDefaultCredentials = false;
+                smtp.EnableSsl = true;
+                smtp.Credentials = new System.Net.NetworkCredential("freecycledonations@gmail.com", "freecycle123");
+                smtp.Send(mm);
+
+                //No es necesario se puede manejar con una flag tipica
+                ViewBag.Email = Email;
+
+            }
+            else
             {
-                try
+                //Enviar VB de usuario no registrado
+            }
+            return View();
+        }
+
+        public IActionResult CambiarContraseña(string tkn, int flag)
+        {
+            if (!string.IsNullOrEmpty(tkn))
+            {
+                ViewBag.tkn = tkn;
+                ViewBag.flag = flag;
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CambiarContraseña(string Password, string Password2, string tkn)
+        {
+            Encriptacion e = new Encriptacion();
+
+            if (Password == Password2)
+            {
+                string claveCompartida = "limoncitoconron";
+                String tknDencrypted = e.DecryptStringAES(tkn, claveCompartida);
+                var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == tknDencrypted);
+
+                if (Usuario != null)
                 {
-                    _context.Update(usuario);
+                    Usuario.Password = Password;
+                    _context.Update(Usuario);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction("GoToIndex", "Home", new { flag = 4 });
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(usuario.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(usuario);
-        }
 
-        // GET: Usuarios/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
+            }
+            else
             {
-                return NotFound();
+                return RedirectToAction("CambiarContraseña", "Usuarios", new { tkn = tkn, flag = 5 });
             }
 
-            var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
+            return View();
 
-            return View(usuario);
-        }
-
-        // POST: Usuarios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var usuario = await _context.Usuario.FindAsync(id);
-            _context.Usuario.Remove(usuario);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool UsuarioExists(int id)
-        {
-            return _context.Usuario.Any(e => e.Id == id);
         }
     }
 }
