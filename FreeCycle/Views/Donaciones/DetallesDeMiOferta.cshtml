@@ -1,0 +1,82 @@
+﻿@model FreeCycle.Models.OfrecerDonacion
+
+@{
+    ViewData["Title"] = "Offer Details";
+}
+
+<h1>Offer details</h1>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Address
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.adress)
+        </dd>
+        <dt class="col-sm-2">
+            Object Description
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.objeto)
+        </dd>
+        <dt class="col-sm-2">
+            Object Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+        <dt class="col-sm-2">
+            User's name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Usuario.Name)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    This offer is yours, if you already have made the deal with the applicant or if you don't want to offer it anymore, please detele the offer.
+</div>
+
+<br />
+
+<form asp-action="DetallesDeMiOferta" asp-route-UsuarioId="@ViewBag.UsuarioId ">
+
+    <div>
+        <input type="hidden" name="Id" value="@Html.DisplayFor(model => model.Id)" />
+    </div>
+
+    <div>
+        <input type="hidden" name="UsuarioId" value="@ViewBag.UsuarioId" />
+    </div>
+
+    <div class="form-group row">
+        <div class="col-2">
+            <input type="submit" value="Delete my Offer" class="btn btn-info btn-block" />
+        </div>
+
+    </div>
+
+
+</form>
+
+<br />
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-2">
+        <a asp-action="ListaDeOfrecerDonaciones" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-block">Back to list</a>
+    </div>
+</div>

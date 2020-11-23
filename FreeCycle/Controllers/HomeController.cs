@@ -56,27 +56,41 @@ namespace FreeCycle.Controllers
                 }
                 ViewBag.flag = flag;
                 
-                return View("Index", validacion);
-        }
-
-        //Le llega la flag para mostrar el mensaje de registro exitoso
-        //Este sería el flag 3
-        public IActionResult GoToIndex(int flag)
-        {
-            ViewBag.flag = flag;
-            return View("Index");
+                return View("InicioSesion", validacion);
         }
 
         public IActionResult Index()
         {
             return View();
         }
-       
-        public IActionResult HomePage(int flag , int UsuarioId)
+
+
+        //Le llega la flag para mostrar el mensaje de registro exitoso
+        //Este sería el flag 3
+        public IActionResult GoToIndex(int flag)
         {
             ViewBag.flag = flag;
-            ViewBag.UsuarioId = UsuarioId;
+            return View("InicioSesion");
+        }
+
+        public IActionResult InicioSesion()
+        {
             return View();
+        }
+
+        
+
+        public IActionResult HomePage(int flag , int UsuarioId, string Email)
+        {
+            if(UsuarioId != 0 )
+            {
+                ViewBag.flag = flag;
+                ViewBag.UsuarioId = UsuarioId;
+                ViewBag.Email = Email;
+                return View();
+            }
+            ViewBag.flag = 8;
+            return View("InicioSesion");
         }
 
         public IActionResult Privacy()
