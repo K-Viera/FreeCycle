@@ -8975,19 +8975,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\programador1\\.nuget\\packages\\": {}
+    "C:\\Users\\Camilo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+      "projectUniqueName": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
       "projectName": "FreeCycle",
-      "projectPath": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
-      "packagesPath": "C:\\Users\\programador1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\programador1\\Desktop\\FreeCycle\\FreeCycle\\obj\\",
+      "projectPath": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+      "packagesPath": "C:\\Users\\Camilo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\programador1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Camilo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
