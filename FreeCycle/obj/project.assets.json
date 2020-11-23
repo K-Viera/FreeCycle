@@ -8980,11 +8980,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+      "projectUniqueName": "C:\\Users\\Camilo\\source\\repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
       "projectName": "FreeCycle",
-      "projectPath": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+      "projectPath": "C:\\Users\\Camilo\\source\\repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
       "packagesPath": "C:\\Users\\Camilo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\obj\\",
+      "outputPath": "C:\\Users\\Camilo\\source\\repos\\FreeCycle\\FreeCycle\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Camilo\\AppData\\Roaming\\NuGet\\NuGet.Config",
