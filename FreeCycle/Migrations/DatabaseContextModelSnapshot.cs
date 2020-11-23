@@ -13,7 +13,7 @@ namespace FreeCycle.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("FreeCycle.Models.Empresa", b =>
@@ -47,6 +47,34 @@ namespace FreeCycle.Migrations
                     b.ToTable("Empresa");
                 });
 
+            modelBuilder.Entity("FreeCycle.Models.OfrecerDonacion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("adress")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("estado")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("objeto")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("ofrecerDonacion");
+                });
+
             modelBuilder.Entity("FreeCycle.Models.SolicitudDonacion", b =>
                 {
                     b.Property<int>("Id")
@@ -68,7 +96,7 @@ namespace FreeCycle.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("SolicitudDonacion");
+                    b.ToTable("solicitudDonacion");
                 });
 
             modelBuilder.Entity("FreeCycle.Models.Usuario", b =>
@@ -96,6 +124,15 @@ namespace FreeCycle.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("FreeCycle.Models.OfrecerDonacion", b =>
+                {
+                    b.HasOne("FreeCycle.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FreeCycle.Models.SolicitudDonacion", b =>

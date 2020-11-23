@@ -17,7 +17,7 @@ namespace FreeCycle.Models
 
         [Required]
         public String objeto { get; set; }
-
+        
         [ForeignKey("Usuario")]
         public int UsuarioId { get; set; }
         public virtual Usuario Usuario { get; set; }

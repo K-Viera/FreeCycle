@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FreeCycle.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FreeCycle.Controllers
 {
@@ -16,95 +17,76 @@ namespace FreeCycle.Controllers
         {
             _context = context;
         }
-        // GET: DonacionesController
-        public ActionResult Index()
+
+        public ActionResult OfrecerDonacion(int UsuarioId)
         {
+            ViewBag.UsuarioId = UsuarioId;
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CrearOfrecimiento([Bind("UsuarioId,adress,estado,objeto")] OfrecerDonacion ofrecimiento)
+        {
+            int flag = 0;
+            if (ModelState.IsValid)
+            {
+                _context.Add(ofrecimiento);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("HomePage", "Home", new { flag = 4, UsuarioId = ofrecimiento.UsuarioId });
+            }
+
+            return View("OfrecerDonacion", ofrecimiento);
+        }
+
+        //Esto le envía el parámetro a la vista directamente???
         public ActionResult SolicitudDonacion(int UsuarioId)
         {
+            ViewBag.UsuarioId = UsuarioId;
             return View();
         }
+        
+        //flag 3 para registro de solicitud de donación exitoso
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearSolicitud([Bind("UsuarioId,adress,objeto")]SolicitudDonacion solicitud)
         {
+            int flag = 0;
             if (ModelState.IsValid)
             {
                 _context.Add(solicitud);
                 await _context.SaveChangesAsync();
-                //hacer aviso de registro de solicitud exitoso
-                return RedirectToAction("HomePage", "Home", new { flag = 3, UsuarioId=solicitud.UsuarioId });
+                 return RedirectToAction("HomePage", "Home", new { flag = 3, UsuarioId=solicitud.UsuarioId });
             }
+            
             return View("SolicitudDonacion", solicitud);
         }
-            // GET: DonacionesController/Details/5
-            public ActionResult Details(int id)
+
+        public async Task<IActionResult> ListaDeSolicitudesDeDonaciones(int UsuarioId)
         {
-            return View();
+            ViewBag.UsuarioId = UsuarioId;
+            var databaseContext = _context.solicitudDonacion.Include(s => s.Usuario);
+            return View(await databaseContext.ToListAsync());
         }
 
-        // GET: DonacionesController/Create
-        public ActionResult Create()
+
+        public async Task<IActionResult> DetallesDeSolicitudesDeDonaciones(int? id, int UsuarioId)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ViewBag.UsuarioId = UsuarioId;
+            var solicitudDonacion = await _context.solicitudDonacion
+                .Include(s => s.Usuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (solicitudDonacion == null)
+            {
+                return NotFound();
+            }
+
+            return View(solicitudDonacion);
         }
 
-        // POST: DonacionesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: DonacionesController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: DonacionesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: DonacionesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: DonacionesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
