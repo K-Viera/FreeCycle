@@ -1866,3 +1866,10 @@ C:\Users\Camilo\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\V
 C:\Users\Camilo\source\repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\FreeCycle.csproj.CoreCompileInputs.cache
 C:\Users\Camilo\source\repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\FreeCycle.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Camilo\source\repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\FreeCycle.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Donaciones\DetallesDeMiOferta.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Donaciones\DetallesDeMiSolicitud.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Donaciones\DetallesDeOfertasDeDonaciones.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Donaciones\ListaDeOfrecerDonaciones.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Donaciones\OfrecerDonacion.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Home\InicioSesion.cshtml.g.cs
+C:\Users\Simon\Source\Repos\FreeCycle\FreeCycle\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\CambiarContraseña.cshtml.g.cs

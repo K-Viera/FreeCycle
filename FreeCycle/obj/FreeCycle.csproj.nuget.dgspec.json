@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {}
+    "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {
+    "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+        "projectUniqueName": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
         "projectName": "FreeCycle",
-        "projectPath": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
-        "packagesPath": "C:\\Users\\Camilo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Camilo\\Source\\Repos\\FreeCycle\\FreeCycle\\obj\\",
+        "projectPath": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\FreeCycle.csproj",
+        "packagesPath": "C:\\Users\\Simon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Simon\\Source\\Repos\\FreeCycle\\FreeCycle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Camilo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
