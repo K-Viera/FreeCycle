@@ -1,16 +1,16 @@
-﻿@model IEnumerable<FreeCycle.Models.SolicitudDonacion>
+﻿@model IEnumerable<FreeCycle.Models.OfrecerDonacion>
 
 @{
-    ViewData["Title"] = "Request List";
+    ViewData["Title"] = "Donation List";
 }
 
-<h1>Donation requests</h1>
+<h1>Donation offers</h1>
 
 <div class="form-group">
     <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Type to search">
 </div>
 
-<table class="table" id="requeststable">
+<table class="table" id="offerstable">
     <thead>
         <tr>
             <th>
@@ -18,6 +18,9 @@
             </th>
             <th>
                 Object description
+            </th>
+            <th>
+                Object status
             </th>
             <th>
                 User's name
@@ -36,17 +39,19 @@
                     @Html.DisplayFor(modelItem => item.objeto)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Usuario.Name)
                 </td>
                 <td>
                     <!-- Preguntarle a Kevin cómo mandar el Item.id hace que se sepa qué item es en la vista de Detalles-->
-                    <a asp-action="DetallesDeSolicitudesDeDonaciones" asp-route-id="@item.Id" asp-route-UsuarioId="@ViewBag.UsuarioId">Request details</a>
+                    <a asp-action="DetallesDeOfertasDeDonaciones" asp-route-id="@item.Id" asp-route-UsuarioId="@ViewBag.UsuarioId">Offer details</a>
 
                 </td>
             </tr>
         }
     </tbody>
-
 </table>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -57,7 +62,7 @@
         $("#search").keyup(function () {
             _this = this;
             // Show only matching TR, hide rest of them
-            $.each($("#requeststable tbody tr"), function () {
+            $.each($("#offerstable tbody tr"), function () {
                 if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
                     $(this).hide();
                 else
@@ -73,4 +78,3 @@
 
 
 </div>
-
