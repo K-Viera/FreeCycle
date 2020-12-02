@@ -105,6 +105,7 @@ namespace FreeCycle.Controllers
 
             if (Password == Password2)
             {
+                tkn = changeSpacesToPlus(tkn);
                 string claveCompartida = "limoncitoconron";
                 String tknDencrypted = e.DecryptStringAES(tkn, claveCompartida);
                 var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == tknDencrypted);
@@ -125,6 +126,12 @@ namespace FreeCycle.Controllers
 
             return View();
 
+        }
+
+        public string changeSpacesToPlus (string c)
+        {
+            string x =  c.Replace(' ', '+');
+            return x;
         }
     }
 }
