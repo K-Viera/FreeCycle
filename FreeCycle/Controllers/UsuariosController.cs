@@ -57,6 +57,7 @@ namespace FreeCycle.Controllers
         public ActionResult RecuperarContraseña(string Email)
         {
             Encriptacion e = new Encriptacion();
+            Correos c = new Correos();
             var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == Email);
             if (Usuario != null)
             {
@@ -64,31 +65,16 @@ namespace FreeCycle.Controllers
                 //ACÁ SE DEBERÍA ENCRIPTAR EL EMAIL
                 string claveCompartida = "limoncitoconron";
                 string strEncrypted = e.EncryptStringAES(strToken, claveCompartida);
-                //Acá se debería adquirir la dirección de una mejor forma
-                var address = "https://localhost:44358/Usuarios/CambiarContraseña/?tkn=" + strEncrypted;
+              
+                var address = "http://freecycle-001-site1.btempurl.com/Usuarios/CambiarContraseña/?tkn=" + strEncrypted;
 
                 string to = Email;
-                string subject = "PASSWORD RECOVERY";
+                string subject = "Password recovery";
 
                 //Mejorar este mensaje y ponerlo con HTML
                 string body = "Hello, in the following link you will be able to change your password to recover your account: " + address;
 
-                MailMessage mm = new MailMessage();
-                mm.To.Add(to);
-                mm.Subject = subject;
-                mm.Body = body;
-                mm.From = new MailAddress("freecycledonations@gmail.com");
-                //Acá iría true cuando esté hecho con HTML
-                mm.IsBodyHtml = false;
-
-
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-                smtp.Port = 587;
-                //maybe true
-                smtp.UseDefaultCredentials = false;
-                smtp.EnableSsl = true;
-                smtp.Credentials = new System.Net.NetworkCredential("freecycledonations@gmail.com", "freecycle123");
-                smtp.Send(mm);
+                c.enviarCorreo(to,subject,body);
 
                 //No es necesario se puede manejar con una flag tipica
                 ViewBag.Email = Email;
@@ -119,6 +105,7 @@ namespace FreeCycle.Controllers
 
             if (Password == Password2)
             {
+                tkn = changeSpacesToPlus(tkn);
                 string claveCompartida = "limoncitoconron";
                 String tknDencrypted = e.DecryptStringAES(tkn, claveCompartida);
                 var Usuario = _context.Usuario.FirstOrDefault(user => user.Email == tknDencrypted);
@@ -139,6 +126,12 @@ namespace FreeCycle.Controllers
 
             return View();
 
+        }
+
+        public string changeSpacesToPlus (string c)
+        {
+            string x =  c.Replace(' ', '+');
+            return x;
         }
     }
 }
