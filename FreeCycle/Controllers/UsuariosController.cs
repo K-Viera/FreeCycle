@@ -65,8 +65,8 @@ namespace FreeCycle.Controllers
                 //ACÁ SE DEBERÍA ENCRIPTAR EL EMAIL
                 string claveCompartida = "limoncitoconron";
                 string strEncrypted = e.EncryptStringAES(strToken, claveCompartida);
-                //Acá se debería adquirir la dirección de una mejor forma
-                var address = "https://localhost:44358/Usuarios/CambiarContraseña/?tkn=" + strEncrypted;
+              
+                var address = "http://freecycle-001-site1.btempurl.com/Usuarios/CambiarContraseña/?tkn=" + strEncrypted;
 
                 string to = Email;
                 string subject = "Password recovery";
