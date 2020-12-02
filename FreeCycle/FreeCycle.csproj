@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201013050025_migracionprueba.cs" />
     <Compile Remove="Migrations\20201013050025_migracionprueba.Designer.cs" />
+    <Compile Remove="Migrations\20201123010312_new database.cs" />
+    <Compile Remove="Migrations\20201123010312_new database.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,10 +21,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\Imagenes\" />
   </ItemGroup>
 
   <ItemGroup>

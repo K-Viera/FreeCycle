@@ -29,31 +29,80 @@
         </strong>
     </div>
 }
+@if (ViewBag.flag == 5)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>
+            An Email with your info has been sent to "@ViewBag.Email" succesfully, please wait until he emails you to deal the donation.
+        </strong>
+    </div>
+}
+@if (ViewBag.flag == 6)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>
+            Your request has been deleted succesfully.
+        </strong>
+    </div>
+}
+@if (ViewBag.flag == 7)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>
+            Your offer has been deleted succesfully.
+        </strong>
+    </div>
+}
+
 <div class="text-center"><img src="/Imagenes/FreeCycle.png" class="rounded-circle" height="162" width="377" /></div>
 
 
-
-
-<br />
-<br />
-<br />
 <br />
 
+<div class="text-center">
 
-<div class="row">
+    <br />
 
-    <div class="col-4">
-        <a asp-controller="Donaciones" asp-action="SolicitudDonacion" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-lg btn-block">Ask for a Donation</a>
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-5">
+            <a asp-controller="Donaciones" asp-action="SolicitudDonacion" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-lg btn-block">Ask for a Donation</a>
+        </div>
+        <div class="col-5">
+            <a asp-controller="Donaciones" asp-action="ListaDeOfrecerDonaciones" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-lg btn-block">Take a Donation</a>
+        </div>
+
+        <div class="col-1">
+
+        </div>
     </div>
-    <div class="col-4">
-        <a asp-controller="Donaciones" asp-action="ListaDeSolicitudesDeDonaciones" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-block btn-lg">Make a Donation</a>
-    </div>
-    <div class="col-4">
-        <a asp-controller="Donaciones" asp-action="OfrecerDonacion" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-lg btn-block">Offer a Donation</a>
+
+    <br />
+
+
+    <br />
+
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-5">
+            <a asp-controller="Donaciones" asp-action="OfrecerDonacion" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-lg btn-block">Offer a Donation</a>
+        </div>
+        <div class="col-5">
+            <a asp-controller="Donaciones" asp-action="ListaDeSolicitudesDeDonaciones" asp-route-UsuarioId="@ViewBag.UsuarioId" class="btn btn-info text-white btn-block btn-lg">Make a Donation</a>
+        </div>
+        <div class="col-1">
+
+        </div>
     </div>
 
 </div>
-
 
 <script type="text/javascript">
     setTimeout(function () {
