@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EdinsaWebServer.Models.Trabajo.Personas;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,13 @@ namespace FreeCycle.Models
         }
 
         public DbSet<Usuario> Usuario { get; set; }
-       
+        public DbSet<DatosAcademicosPersona> datosAcademicosPersonas { get; set; }
+        public DbSet<DatosGeneralesPersona> datosGeneralesPersonas { get; set; }
+        public DbSet<DatosEspecificosPersona> datosEspecificosPersonas { get; set; }
+        public DbSet<DatosLaboralesPersona> datosLaboralesPersonas { get; set; }
+        public DbSet<EstudioPersona> estudioPersonas { get; set; }
+
+        public DbSet<IdiomaPersona> idiomaPersonas { get; set; }
        
     }
 }
